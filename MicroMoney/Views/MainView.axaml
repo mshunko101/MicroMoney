@@ -13,17 +13,19 @@
     <vm:MainViewModel />
   </Design.DataContext>
   <Grid>
-  <Grid>
-    <ContentControl Content="{Binding Model}" IsVisible="{Binding ModelVisible}">
+
+    <ContentControl Content="{Binding Model}" ZIndex="2" Opacity="{Binding ModelOpacity}" IsEnabled="{Binding ModelEnabled}">
       <ContentControl.DataTemplates>
         <dataTemplates:DialogServiceTemplateSelector>
           <DataTemplate x:Key="MmMessageBox" DataType="vm:MmMessageBoxViewModel">
         </DataTemplate>
+      <DataTemplate x:Key="MmMessageBox" DataType="vm:MmMessageBoxViewModel">
+        </DataTemplate>
       </dataTemplates:DialogServiceTemplateSelector>
     </ContentControl.DataTemplates>
   </ContentControl>
-  </Grid>
-  <Grid IsVisible="{Binding MainViewVisible}">
+
+  <Grid Opacity="{Binding MainViewOpacity}" ZIndex="1" IsEnabled="{Binding MainViewEnabled}">
     <Grid.ColumnDefinitions>
       <ColumnDefinition Width="1*"/>
       <ColumnDefinition Width="2*"/>
@@ -32,21 +34,21 @@
     <TabControl Grid.Column="0" TabStripPlacement="Top">
       <TabItem Header="Организации">
         <!-- редактирование информации базовых элементов дерева -->
-        <Border BorderThickness="1" BorderBrush="#FF0000">
+        <Border BorderThickness="1" BorderBrush="WhiteSmoke">
         </Border>
       </TabItem>
       <TabItem Header="Справочники">
         <!-- редактирование информации базовых элементов дерева -->
-        <Border BorderThickness="1" BorderBrush="#FF0000">
+        <Border BorderThickness="1" BorderBrush="WhiteSmoke">
         </Border>
       </TabItem>
       <TabItem Header="Безопасность">
         <!-- редактирование информации базовых элементов дерева -->
-        <Border BorderThickness="1" BorderBrush="#FF0000">
+        <Border BorderThickness="1" BorderBrush="WhiteSmoke">
         </Border>
       </TabItem>
       <TabItem Header="Настройки">
-        <Border BorderThickness="1" BorderBrush="#FF0000">
+        <Border BorderThickness="1" BorderBrush="WhiteSmoke">
         </Border>
         <!-- редактирование информации базовых элементов дерева -->
       </TabItem>
@@ -55,24 +57,24 @@
     <TabControl Grid.Column="1">
       <TabItem Header="Информация">
         <!-- редактирование информации базовых элементов дерева -->
-        <Border BorderThickness="1" BorderBrush="#FF0000">
+        <Border BorderThickness="1" BorderBrush="WhiteSmoke">
         </Border>
       </TabItem>
       <TabItem Header="Уведомления">
         <!-- SplitView на 2 грид и инфо панель с деталями уведомления -->
-        <Border BorderThickness="1" BorderBrush="#FF0000">
+        <Border BorderThickness="1" BorderBrush="WhiteSmoke">
         </Border>
       </TabItem>
       <TabItem Header="Отчетность">
         <!-- Предоставление информации листьев на базовых элементах дерева 
           Графики и сводные таблички
          -->
-        <Border BorderThickness="1" BorderBrush="#FF0000">
+        <Border BorderThickness="1" BorderBrush="WhiteSmoke">
         </Border>
       </TabItem>
       <TabItem Header="Прогноз">
         <!-- Предоставление прогнозной информации листьев на базовых элементах  дерева -->
-        <Border BorderThickness="1" BorderBrush="#FF0000">
+        <Border BorderThickness="1" BorderBrush="WhiteSmoke">
         </Border>
       </TabItem>
 

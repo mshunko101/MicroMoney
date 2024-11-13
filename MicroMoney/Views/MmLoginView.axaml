@@ -1,0 +1,37 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:vm="clr-namespace:MicroMoney.ViewModels"
+             HorizontalContentAlignment="Stretch"
+             VerticalContentAlignment="Stretch"
+             HorizontalAlignment="Stretch"
+             VerticalAlignment="Stretch"
+             x:DataType="vm:MmLoginViewModel"
+             x:Class="MicroMoney.Views.MmLoginView">
+         <Border>
+            <Border MaxWidth="600" MaxHeight="300" BorderThickness="1" BorderBrush="#AAAAAA" Background="WhiteSmoke">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding Title}" HorizontalAlignment="Center" />
+                    <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding Message}" HorizontalAlignment="Center" />
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Логин:" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    <TextBlock Grid.Row="3" Grid.Column="0" Text="Пароль:" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Login}" HorizontalAlignment="Left" Width="100"/>
+                    <TextBox PasswordChar="*" Grid.Row="3" Grid.Column="1" Text="{Binding Password}" HorizontalAlignment="Left" Width="100"/>
+                    <Button Grid.Row="4" Grid.ColumnSpan="2" Content="Закрыть" Command="{Binding LoginCommand}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Grid>
+            </Border>
+        </Border>
+</UserControl>

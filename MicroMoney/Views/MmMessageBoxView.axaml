@@ -3,11 +3,25 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:vm="clr-namespace:MicroMoney.ViewModels"
              HorizontalContentAlignment="Stretch"
              VerticalContentAlignment="Stretch"
              HorizontalAlignment="Stretch"
              VerticalAlignment="Stretch"
+             x:DataType="vm:MmMessageBoxViewModel"
              x:Class="MicroMoney.Views.MmMessageBoxView">
-         <Border BorderThickness="1" BorderBrush="#FF0000">
+         <Border>
+            <Border MaxWidth="600" MaxHeight="300" BorderThickness="1" BorderBrush="#AAAAAA" Background="WhiteSmoke">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="{Binding Title}"/>
+                    <TextBlock Grid.Row="1" Text="{Binding Message}"/>
+                    <Button Grid.Row="2" Content="Закрыть" Command="{Binding CloseCommand}"/>
+                </Grid>
+            </Border>
         </Border>
 </UserControl>
