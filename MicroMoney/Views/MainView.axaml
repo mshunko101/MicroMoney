@@ -1,0 +1,82 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:MicroMoney.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="MicroMoney.Views.MainView"
+             xmlns:dataTemplates="clr-namespace:MicroMoney.Views.TemplateUtils"
+             x:DataType="vm:MainViewModel">
+  <Design.DataContext>
+    <!-- This only sets the DataContext for the previewer in an IDE,
+         to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+    <vm:MainViewModel />
+  </Design.DataContext>
+  <Grid>
+  <Grid>
+    <ContentControl Content="{Binding Model}" IsVisible="{Binding ModelVisible}">
+      <ContentControl.DataTemplates>
+        <dataTemplates:DialogServiceTemplateSelector>
+          <DataTemplate x:Key="MmMessageBox" DataType="vm:MmMessageBoxViewModel">
+        </DataTemplate>
+      </dataTemplates:DialogServiceTemplateSelector>
+    </ContentControl.DataTemplates>
+  </ContentControl>
+  </Grid>
+  <Grid IsVisible="{Binding MainViewVisible}">
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="1*"/>
+      <ColumnDefinition Width="2*"/>
+    </Grid.ColumnDefinitions>
+
+    <TabControl Grid.Column="0" TabStripPlacement="Top">
+      <TabItem Header="Организации">
+        <!-- редактирование информации базовых элементов дерева -->
+        <Border BorderThickness="1" BorderBrush="#FF0000">
+        </Border>
+      </TabItem>
+      <TabItem Header="Справочники">
+        <!-- редактирование информации базовых элементов дерева -->
+        <Border BorderThickness="1" BorderBrush="#FF0000">
+        </Border>
+      </TabItem>
+      <TabItem Header="Безопасность">
+        <!-- редактирование информации базовых элементов дерева -->
+        <Border BorderThickness="1" BorderBrush="#FF0000">
+        </Border>
+      </TabItem>
+      <TabItem Header="Настройки">
+        <Border BorderThickness="1" BorderBrush="#FF0000">
+        </Border>
+        <!-- редактирование информации базовых элементов дерева -->
+      </TabItem>
+    </TabControl>
+
+    <TabControl Grid.Column="1">
+      <TabItem Header="Информация">
+        <!-- редактирование информации базовых элементов дерева -->
+        <Border BorderThickness="1" BorderBrush="#FF0000">
+        </Border>
+      </TabItem>
+      <TabItem Header="Уведомления">
+        <!-- SplitView на 2 грид и инфо панель с деталями уведомления -->
+        <Border BorderThickness="1" BorderBrush="#FF0000">
+        </Border>
+      </TabItem>
+      <TabItem Header="Отчетность">
+        <!-- Предоставление информации листьев на базовых элементах дерева 
+          Графики и сводные таблички
+         -->
+        <Border BorderThickness="1" BorderBrush="#FF0000">
+        </Border>
+      </TabItem>
+      <TabItem Header="Прогноз">
+        <!-- Предоставление прогнозной информации листьев на базовых элементах  дерева -->
+        <Border BorderThickness="1" BorderBrush="#FF0000">
+        </Border>
+      </TabItem>
+
+    </TabControl>
+  </Grid>
+</Grid>
+</UserControl>
