@@ -1,0 +1,14 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "msbuild",
+			"problemMatcher": [
+				"$msCompile"
+			],
+			"group": "build",
+			"label": "Build: MicroMoney.csproj",
+			"detail": "Build the MicroMoney.csproj project using dotnet build"
+		}
+	]
+}

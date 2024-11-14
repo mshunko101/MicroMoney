@@ -1,4 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using MicroMoney.Views.Converters;
+using System.Collections.ObjectModel;
+
 
 namespace MicroMoney.ViewModels;
 
@@ -14,10 +17,15 @@ public partial class MainViewModel : ViewModelBase
     private bool mainViewEnabled;
     [ObservableProperty]
     private bool modelEnabled;
-
-
+    [ObservableProperty]
+    private ObservableCollection<LeftTabsViewModel> leftTabs;
+ 
     public MainViewModel()
-    {
+    {   
+        LeftTabs = new ObservableCollection<LeftTabsViewModel>()
+        {
+            new OrganizationsViewModel(){Title="Организации", Icon=nameof(Icons.Organization)}
+        };
         ShowDialog(new MmLoginViewModel(nameof(MainViewModel), CloseDialog){Title="Заголовок окна", Message="Данная программа представляет собой систему учета ресурсов."});
     }
 

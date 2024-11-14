@@ -7,7 +7,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace MicroMoney.ViewModels
 {
-    public partial class MmLoginViewModel : ViewModelBase
+    public partial class MmLoginViewModel : EmbedViewModel
     {
         [ObservableProperty]
         private string? title;
@@ -18,13 +18,18 @@ namespace MicroMoney.ViewModels
         [ObservableProperty]
         private string? password;
 
-        public MmLoginViewModel(string caller, Action<ViewModelBase> closeCallBack)
+        public MmLoginViewModel(string caller, Action<EmbedViewModel> closeCallBack)
         :base(caller, closeCallBack)
         {
 
         }
 
         public void LoginCommand()
+        {
+            _closeCallBack(this);
+        }
+
+        public void ExitCommand()
         {
             _closeCallBack(this);
         }

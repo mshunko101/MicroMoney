@@ -7,14 +7,14 @@ using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace MicroMoney.ViewModels
 {
-    public partial class MmMessageBoxViewModel : ViewModelBase
+    public partial class MmMessageBoxViewModel : EmbedViewModel
     {
         [ObservableProperty]
         private string? title;
         [ObservableProperty]
         private string? message;
 
-        public MmMessageBoxViewModel(string caller, Action<ViewModelBase> closeCallBack)
+        public MmMessageBoxViewModel(string caller, Action<EmbedViewModel> closeCallBack)
         :base(caller, closeCallBack)
         {
 

@@ -3,10 +3,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:MicroMoney.ViewModels"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="MicroMoney.Views.MainView"
              xmlns:dataTemplates="clr-namespace:MicroMoney.Views.TemplateUtils"
+             xmlns:converters="clr-namespace:MicroMoney.Views.Converters"
+             x:Class="MicroMoney.Views.MainView"
              x:DataType="vm:MainViewModel">
+  <UserControl.Resources>
+       <converters:TabIconConverter x:Key="tabIconConverter"/>
+  </UserControl.Resources>
   <Design.DataContext>
     <!-- This only sets the DataContext for the previewer in an IDE,
          to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
@@ -19,7 +22,7 @@
         <dataTemplates:DialogServiceTemplateSelector>
           <DataTemplate x:Key="MmMessageBox" DataType="vm:MmMessageBoxViewModel">
         </DataTemplate>
-      <DataTemplate x:Key="MmMessageBox" DataType="vm:MmMessageBoxViewModel">
+        <DataTemplate x:Key="MmLoginView" DataType="vm:MmLoginViewModel">
         </DataTemplate>
       </dataTemplates:DialogServiceTemplateSelector>
     </ContentControl.DataTemplates>
@@ -31,27 +34,57 @@
       <ColumnDefinition Width="2*"/>
     </Grid.ColumnDefinitions>
 
-    <TabControl Grid.Column="0" TabStripPlacement="Top">
-      <TabItem Header="Организации">
-        <!-- редактирование информации базовых элементов дерева -->
-        <Border BorderThickness="1" BorderBrush="WhiteSmoke">
-        </Border>
-      </TabItem>
-      <TabItem Header="Справочники">
-        <!-- редактирование информации базовых элементов дерева -->
-        <Border BorderThickness="1" BorderBrush="WhiteSmoke">
-        </Border>
-      </TabItem>
-      <TabItem Header="Безопасность">
-        <!-- редактирование информации базовых элементов дерева -->
-        <Border BorderThickness="1" BorderBrush="WhiteSmoke">
-        </Border>
-      </TabItem>
-      <TabItem Header="Настройки">
-        <Border BorderThickness="1" BorderBrush="WhiteSmoke">
-        </Border>
-        <!-- редактирование информации базовых элементов дерева -->
-      </TabItem>
+    <TabControl Grid.Column="0" TabStripPlacement="Top"
+     ItemsSource="{Binding LeftTabs}">
+        <TabControl.ItemTemplate>
+          <DataTemplate x:DataType="vm:LeftTabsViewModel"> <!-- any data template you want, this is just an example -->
+            <StackPanel Orientation="Horizontal">
+                <PathIcon Data="{Binding Icon,Converter={StaticResource tabIconConverter}}" />
+                <TextBlock Text="{Binding Title}" />
+            </StackPanel>
+          </DataTemplate>
+        </TabControl.ItemTemplate>
+        <TabControl.DataTemplates>
+          <DataTemplate x:DataType="vm:OrganizationsViewModel">
+            <Border BorderThickness="1" BorderBrush="WhiteSmoke">
+              <Grid>
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="Auto"/>
+                  <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal">
+                    <Button Background="WhiteSmoke">
+                      <Button.Content> 
+                          <PathIcon Data="{Binding Converter={StaticResource tabIconConverter}, ConverterParameter=Sync}" /> 
+                      </Button.Content>
+                    </Button>
+                    <Button Background="WhiteSmoke">
+                      <Button.Content> 
+                          <PathIcon Data="{Binding Converter={StaticResource tabIconConverter}, ConverterParameter=SquareAdd}" /> 
+                      </Button.Content>
+                    </Button>
+                    <Button Background="WhiteSmoke">
+                      <Button.Content> 
+                          <PathIcon Data="{Binding Converter={StaticResource tabIconConverter}, ConverterParameter=Delete}" /> 
+                      </Button.Content>
+                    </Button>
+                </StackPanel>
+              <TreeView Grid.Row="1"
+                        ItemsSource="{Binding Nodes}" 
+                        SelectedItems="{Binding SelectedNodes}"
+                        SelectionMode="Single">
+              <TreeView.ItemTemplate>
+                <TreeDataTemplate ItemsSource="{Binding SubNodes}">
+                  <Border BorderBrush="WhiteSmoke" BorderThickness="1">
+                    <TextBlock Text="{Binding Title}" />
+                  </Border>
+                </TreeDataTemplate>
+              </TreeView.ItemTemplate>
+            </TreeView>
+            </Grid>
+          </Border>
+          </DataTemplate>
+      </TabControl.DataTemplates>
     </TabControl>
 
     <TabControl Grid.Column="1">
