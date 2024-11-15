@@ -1,6 +1,11 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using MicroMoney.ViewModels.LeftTabs;
+using MicroMoney.ViewModels.RightTabs;
 using MicroMoney.Views.Converters;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 
 namespace MicroMoney.ViewModels;
@@ -18,15 +23,59 @@ public partial class MainViewModel : ViewModelBase
     [ObservableProperty]
     private bool modelEnabled;
     [ObservableProperty]
+    private string? treePath;
+    [ObservableProperty] 
     private ObservableCollection<LeftTabsViewModel> leftTabs;
+    [ObservableProperty]
+    private int leftTabsSelectedIndex;
+    [ObservableProperty]
+    private LeftTabsViewModel leftSelectedTab;
+    [ObservableProperty] 
+    private ObservableCollection<RightTabsViewModel> rightTabs;
+    [ObservableProperty]
+    private int rightTabsSelectedIndex;
+    [ObservableProperty]
+    private RightTabsViewModel rightSelectedTab;
+
+
  
-    public MainViewModel()
+    public MainViewModel(IServiceProvider sp)
     {   
+        var lht = sp.GetService<HoummieViewModel>();
+        lht.Title = "Спадарства"; lht.Icon = nameof(Icons.Hoummie);
+        var lst = sp.GetService<SettingsViewModel>();
+        lst.Title = "Настройки"; lst.Icon = nameof(Icons.Settings);
+        var lat = sp.GetService<AnaliticsSetsViewModel>();
+        lat.Title = "Справочники"; lat.Icon = nameof(Icons.AnaliticsSets);
+        var lsect = sp.GetService<SecurityViewModel>();
+        lsect.Title = "Безопасность"; lsect.Icon = nameof(Icons.Security);
+
         LeftTabs = new ObservableCollection<LeftTabsViewModel>()
         {
-            new OrganizationsViewModel(){Title="Организации", Icon=nameof(Icons.Organization)}
+            lht, lst, lat, lsect
         };
-        ShowDialog(new MmLoginViewModel(nameof(MainViewModel), CloseDialog){Title="Заголовок окна", Message="Данная программа представляет собой систему учета ресурсов."});
+
+
+        var rit = sp.GetService<InformationViewModel>();
+        rit.Title = "Информация"; rit.Icon = nameof(Icons.Information);
+        var rnt = sp.GetService<NotificationsViewModel>();
+        rnt.Title = "Уведомления"; rnt.Icon = nameof(Icons.Notifications);
+        var rrt = sp.GetService<ReportViewModel>();
+        rrt.Title = "Отчет"; rrt.Icon = nameof(Icons.Report);
+        var rft = sp.GetService<ForecastViewModel>();
+        rft.Title = "Прогноз"; rft.Icon = nameof(Icons.Forecast);
+        RightTabs = new ObservableCollection<RightTabsViewModel>()
+        {
+            rit, rnt, rrt, rft
+        };
+
+        ShowDialog(new LoginViewModel(nameof(MainViewModel), CloseDialog){Title="Заголовок окна", Message="Данная программа представляет собой систему учета ресурсов."});
+    }
+
+    public void SwitchToRightTab(string name)
+    {
+        var tab = RightTabs.First(x => x.Title == name);
+        RightSelectedTab = tab;
     }
 
     protected void ShowDialog(ViewModelBase vm)
@@ -45,7 +94,7 @@ public partial class MainViewModel : ViewModelBase
         MainViewEnabled = true;
         ModelEnabled = false;
         Model = null;
-        if(vm is MmMessageBoxViewModel dvm)
+        if(vm is MessageBoxViewModel dvm)
         {
             
         }

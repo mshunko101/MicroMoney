@@ -3,6 +3,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:MicroMoney.ViewModels"
+             xmlns:pivm="clr-namespace:MicroMoney.ViewModels.RightTabs.Panels.Information"
+             xmlns:lvm="clr-namespace:MicroMoney.ViewModels.LeftTabs"
+             xmlns:rvm="clr-namespace:MicroMoney.ViewModels.RightTabs"
              xmlns:dataTemplates="clr-namespace:MicroMoney.Views.TemplateUtils"
              xmlns:converters="clr-namespace:MicroMoney.Views.Converters"
              x:Class="MicroMoney.Views.MainView"
@@ -20,9 +23,9 @@
     <ContentControl Content="{Binding Model}" ZIndex="2" Opacity="{Binding ModelOpacity}" IsEnabled="{Binding ModelEnabled}">
       <ContentControl.DataTemplates>
         <dataTemplates:DialogServiceTemplateSelector>
-          <DataTemplate x:Key="MmMessageBox" DataType="vm:MmMessageBoxViewModel">
+          <DataTemplate x:Key="MessageBox" DataType="vm:MessageBoxViewModel">
         </DataTemplate>
-        <DataTemplate x:Key="MmLoginView" DataType="vm:MmLoginViewModel">
+        <DataTemplate x:Key="MmLoginView" DataType="vm:LoginViewModel">
         </DataTemplate>
       </dataTemplates:DialogServiceTemplateSelector>
     </ContentControl.DataTemplates>
@@ -35,9 +38,12 @@
     </Grid.ColumnDefinitions>
 
     <TabControl Grid.Column="0" TabStripPlacement="Top"
-     ItemsSource="{Binding LeftTabs}">
+     ItemsSource="{Binding LeftTabs}"
+     SelectedIndex="{Binding LeftTabsSelectedIndex, Mode=TwoWay}" 
+     SelectedItem="{Binding LeftSelectedTab, Mode=TwoWay}"
+      >
         <TabControl.ItemTemplate>
-          <DataTemplate x:DataType="vm:LeftTabsViewModel"> <!-- any data template you want, this is just an example -->
+          <DataTemplate x:DataType="lvm:LeftTabsViewModel"> <!-- any data template you want, this is just an example -->
             <StackPanel Orientation="Horizontal">
                 <PathIcon Data="{Binding Icon,Converter={StaticResource tabIconConverter}}" />
                 <TextBlock Text="{Binding Title}" />
@@ -45,7 +51,7 @@
           </DataTemplate>
         </TabControl.ItemTemplate>
         <TabControl.DataTemplates>
-          <DataTemplate x:DataType="vm:OrganizationsViewModel">
+          <DataTemplate x:DataType="lvm:LeftTabsViewModel">
             <Border BorderThickness="1" BorderBrush="WhiteSmoke">
               <Grid>
                 <Grid.RowDefinitions>
@@ -58,12 +64,12 @@
                           <PathIcon Data="{Binding Converter={StaticResource tabIconConverter}, ConverterParameter=Sync}" /> 
                       </Button.Content>
                     </Button>
-                    <Button Background="WhiteSmoke">
+                    <Button Background="WhiteSmoke" Command="{Binding AddNodeCommand}">
                       <Button.Content> 
                           <PathIcon Data="{Binding Converter={StaticResource tabIconConverter}, ConverterParameter=SquareAdd}" /> 
                       </Button.Content>
                     </Button>
-                    <Button Background="WhiteSmoke">
+                    <Button Background="WhiteSmoke" Command="{Binding DelNodeCommand}">
                       <Button.Content> 
                           <PathIcon Data="{Binding Converter={StaticResource tabIconConverter}, ConverterParameter=Delete}" /> 
                       </Button.Content>
@@ -72,6 +78,7 @@
               <TreeView Grid.Row="1"
                         ItemsSource="{Binding Nodes}" 
                         SelectedItems="{Binding SelectedNodes}"
+                        SelectedItem="{Binding SelectedNode}"
                         SelectionMode="Single">
               <TreeView.ItemTemplate>
                 <TreeDataTemplate ItemsSource="{Binding SubNodes}">
@@ -86,32 +93,46 @@
           </DataTemplate>
       </TabControl.DataTemplates>
     </TabControl>
+    <Grid Grid.Column="1" >
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition/>
+      </Grid.RowDefinitions>
+       <Border Grid.Row="0" Margin="15" BorderThickness="1" BorderBrush="WhiteSmoke">
+         <TextBlock  Text="{Binding TreePath}"/>
+      </Border>
 
-    <TabControl Grid.Column="1">
-      <TabItem Header="Информация">
-        <!-- редактирование информации базовых элементов дерева -->
-        <Border BorderThickness="1" BorderBrush="WhiteSmoke">
-        </Border>
-      </TabItem>
-      <TabItem Header="Уведомления">
-        <!-- SplitView на 2 грид и инфо панель с деталями уведомления -->
-        <Border BorderThickness="1" BorderBrush="WhiteSmoke">
-        </Border>
-      </TabItem>
-      <TabItem Header="Отчетность">
-        <!-- Предоставление информации листьев на базовых элементах дерева 
-          Графики и сводные таблички
-         -->
-        <Border BorderThickness="1" BorderBrush="WhiteSmoke">
-        </Border>
-      </TabItem>
-      <TabItem Header="Прогноз">
-        <!-- Предоставление прогнозной информации листьев на базовых элементах  дерева -->
-        <Border BorderThickness="1" BorderBrush="WhiteSmoke">
-        </Border>
-      </TabItem>
 
+    <TabControl Grid.Row="1" TabStripPlacement="Top"
+     ItemsSource="{Binding RightTabs}"
+     SelectedIndex="{Binding RightTabsSelectedIndex, Mode=TwoWay}" 
+     SelectedItem="{Binding RightSelectedTab, Mode=TwoWay}"
+      >
+        <TabControl.ItemTemplate>
+          <DataTemplate x:DataType="rvm:RightTabsViewModel"> <!-- any data template you want, this is just an example -->
+            <StackPanel Orientation="Horizontal">
+                <PathIcon Data="{Binding Icon,Converter={StaticResource tabIconConverter}}" />
+                <TextBlock Text="{Binding Title}" />
+            </StackPanel>
+          </DataTemplate>
+        </TabControl.ItemTemplate>
+
+        <TabControl.DataTemplates>
+          <DataTemplate x:DataType="rvm:RightTabsViewModel">
+            <Border BorderThickness="1" BorderBrush="WhiteSmoke">
+             <ContentControl Content="{Binding TabContent}">
+              <ContentControl.DataTemplates>
+                  <dataTemplates:RightTabsTemplateSelector>
+                  <DataTemplate x:Key="ManageHoummieView" DataType="pivm:ManageHoummieViewModel">
+                  </DataTemplate>
+                  </dataTemplates:RightTabsTemplateSelector>
+            </ContentControl.DataTemplates>
+           </ContentControl>
+          </Border>
+          </DataTemplate>
+      </TabControl.DataTemplates>
     </TabControl>
+    </Grid>
   </Grid>
 </Grid>
 </UserControl>

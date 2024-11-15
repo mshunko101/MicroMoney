@@ -4,9 +4,9 @@ using Avalonia.Markup.Xaml;
 
 namespace MicroMoney.Views;
 
-public partial class MmMessageBoxView : UserControl
+public partial class MessageBoxView : UserControl
 {
-    public MmMessageBoxView()
+    public MessageBoxView()
     {
         InitializeComponent();
     }

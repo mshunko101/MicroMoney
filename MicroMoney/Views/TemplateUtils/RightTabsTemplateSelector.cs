@@ -8,7 +8,7 @@ using Avalonia.Metadata;
 
 namespace MicroMoney.Views.TemplateUtils
 {
-    public class LeftTabsTemplateSelector : IDataTemplate
+    public class RightTabsTemplateSelector : IDataTemplate
     {
         // This Dictionary should store our shapes. We mark this as [Content], so we can directly add elements to it later.
         [Content]

@@ -6,7 +6,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace MicroMoney.ViewModels
 {
-    public abstract partial class LeftTabsViewModel : ObservableObject
+    public abstract partial class TabViewModel : ViewModelBase
     {
         [ObservableProperty]
         private string? title;

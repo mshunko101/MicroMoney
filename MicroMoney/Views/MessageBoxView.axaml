@@ -8,8 +8,8 @@
              VerticalContentAlignment="Stretch"
              HorizontalAlignment="Stretch"
              VerticalAlignment="Stretch"
-             x:DataType="vm:MmMessageBoxViewModel"
-             x:Class="MicroMoney.Views.MmMessageBoxView">
+             x:DataType="vm:MessageBoxViewModel"
+             x:Class="MicroMoney.Views.MessageBoxView">
          <Border>
             <Border MaxWidth="600" MaxHeight="300" BorderThickness="1" BorderBrush="#AAAAAA" Background="WhiteSmoke">
                 <Grid>

@@ -11,7 +11,7 @@ namespace MicroMoney.Services
     {
         public DbManager()
         {
-            await using var conn = new NpgsqlConnection(connectionString);
+            //await using var conn = new NpgsqlConnection(connectionString);
         }
     }
 }

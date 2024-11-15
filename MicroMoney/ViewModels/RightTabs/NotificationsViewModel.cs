@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MicroMoney.Services.Abstract
+namespace MicroMoney.ViewModels.RightTabs
 {
-    public interface IDbManager
+    public class NotificationsViewModel : RightTabsViewModel
     {
-    
+        
     }
 }

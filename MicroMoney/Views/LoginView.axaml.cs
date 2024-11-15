@@ -4,9 +4,9 @@ using Avalonia.Markup.Xaml;
 
 namespace MicroMoney.Views;
 
-public partial class MmLoginView : UserControl
+public partial class LoginView : UserControl
 {
-    public MmLoginView()
+    public LoginView()
     {
         InitializeComponent();
     }
