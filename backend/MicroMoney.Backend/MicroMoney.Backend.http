@@ -1,0 +1,6 @@
+@MicroMoney.Backend_HostAddress = http://localhost:5145
+
+GET {{MicroMoney.Backend_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
