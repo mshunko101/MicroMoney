@@ -3,6 +3,7 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core;
 using Avalonia.Data.Core.Plugins;
 using Avalonia.Markup.Xaml;
+using MicroMoney.Services.Abstract;
 using MicroMoney.ViewModels;
 using MicroMoney.Views;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,7 +23,7 @@ public partial class App : Application
         collection.Compose();
 
         var services = collection.BuildServiceProvider();
-        var mainVm = services.GetService<MainViewModel>();
+        var mainVm = services.GetService<IUiService>();
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
             // Line below is needed to remove Avalonia data validation.

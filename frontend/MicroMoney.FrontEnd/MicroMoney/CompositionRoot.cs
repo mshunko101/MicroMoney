@@ -1,4 +1,4 @@
-using MicroMoney.Services;
+using MicroMoney.Services.Abstract;
 using MicroMoney.ViewModels;
 using MicroMoney.ViewModels.LeftTabs;
 using MicroMoney.ViewModels.RightTabs;
@@ -11,9 +11,7 @@ namespace MicroMoney
     {
         public static void Compose(this IServiceCollection collection)
         {
-            collection.AddSingleton<DbManager>();
-
-            collection.AddSingleton<MainViewModel>();
+            collection.AddSingleton<IUiService,MainViewModel>();
             collection.AddSingleton<LoginViewModel>();
             collection.AddSingleton<MessageBoxViewModel>();
 

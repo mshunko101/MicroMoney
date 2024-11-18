@@ -9,16 +9,28 @@ namespace MicroMoney.ViewModels.TreeViewNodes
     {
         private string firstName;
         private string secondName;
-        public override string Title
+        public string FirstName
         {
-            get => $"{secondName} {firstName}";
-            set => throw new NotImplementedException();
+            get => firstName;
+            set
+            {
+                firstName = value;
+                OnPropertyChanged(nameof(Title));
+            }
         }
-        public HoummieTreeViewNode(string firstName, string secondName, TreeViewNode parent)
+        public string SecondName
+        {
+            get => secondName;
+            set
+            {
+                secondName = value;
+                OnPropertyChanged(nameof(Title));
+            }
+        }
+ 
+        public HoummieTreeViewNode(TreeViewNode parent)
         :base("", parent)
         {
-            this.firstName = firstName;
-            this.secondName = secondName;
         }
     }
 }

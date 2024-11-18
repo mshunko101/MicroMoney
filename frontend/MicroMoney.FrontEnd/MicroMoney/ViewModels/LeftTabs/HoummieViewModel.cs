@@ -8,6 +8,7 @@ using System.ComponentModel;
 using MicroMoney.ViewModels.TreeViewNodes;
 using Microsoft.Extensions.DependencyInjection;
 using MicroMoney.ViewModels.RightTabs.Panels.Information;
+using MicroMoney.Services.Abstract;
 
 namespace MicroMoney.ViewModels.LeftTabs
 {
@@ -28,11 +29,15 @@ namespace MicroMoney.ViewModels.LeftTabs
 
         public override void AddNodeCommand()
         {
-            if(SelectedNode == null)
-            {
-                
-            }
-            Nodes.Add(new TreeViewNode("Node", SelectedNode, new (){SelectedNode}));
+            var node = new HoummieTreeViewNode(SelectedNode);
+            Nodes.Add(node);
+            var mainModel = serviceProvider.GetService<IUiService>() ?? throw new ArgumentNullException();
+            mainModel.SwitchToRightTab("Информация");
+
+            var tabContent = serviceProvider.GetService<ManageHoummieViewModel>() ?? throw new ArgumentNullException();
+            tabContent.Node = node;
+            mainModel.ShowRightPanel(tabContent);
+            SelectedNode = node;
         }
 
         public override void DelNodeCommand()
@@ -42,12 +47,7 @@ namespace MicroMoney.ViewModels.LeftTabs
 
         public void OnSelectedNodeChanged()
         {
-            var mainModel = serviceProvider.GetService<MainViewModel>();
 
-            mainModel.SwitchToRightTab("Информация");
-
-            var tabContent = serviceProvider.GetService<ManageHoummieViewModel>();
-            mainModel.RightSelectedTab.TabContent = tabContent;
         }
 
         protected override void OnPropertyChanged(PropertyChangedEventArgs e)

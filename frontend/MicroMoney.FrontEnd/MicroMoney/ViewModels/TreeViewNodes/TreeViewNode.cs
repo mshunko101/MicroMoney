@@ -9,11 +9,12 @@ namespace MicroMoney.ViewModels.TreeViewNodes
 {
     public partial class TreeViewNode : ViewModelBase
     {
+        public int Id { get; protected set;}
         [ObservableProperty]
         private ObservableCollection<TreeViewNode>? subNodes;
-        private string title;
+        private string? title;
         [ObservableProperty]
-        private TreeViewNode parent;
+        private TreeViewNode? parent;
 
         public virtual string Title
         {
@@ -28,12 +29,14 @@ namespace MicroMoney.ViewModels.TreeViewNodes
         public TreeViewNode(string title, TreeViewNode parent)
         {
             Title = title;
+            Id = parent.Id + 1;
         }
 
         public TreeViewNode(string title, TreeViewNode parent, ObservableCollection<TreeViewNode> subNodes)
         {
             Title = title;
             SubNodes = subNodes;
+            Id = parent.Id + 1;
         }
     }
 }

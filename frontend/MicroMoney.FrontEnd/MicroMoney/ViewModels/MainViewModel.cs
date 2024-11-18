@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using MicroMoney.Services.Abstract;
 using MicroMoney.ViewModels.LeftTabs;
 using MicroMoney.ViewModels.RightTabs;
 using MicroMoney.Views.Converters;
@@ -10,7 +11,7 @@ using System.Linq;
 
 namespace MicroMoney.ViewModels;
 
-public partial class MainViewModel : ViewModelBase
+public partial class MainViewModel : ViewModelBase, IUiService
 {
     [ObservableProperty]
     private ViewModelBase? model;
@@ -98,5 +99,27 @@ public partial class MainViewModel : ViewModelBase
         {
             
         }
+    }
+
+    public void SwitchToLeftTab(string tabName)
+    { 
+        var tab = LeftTabs.First(x => x.Title == tabName);
+        LeftSelectedTab = tab;
+    }
+
+    public void CloseRightPanel()
+    {
+       // OnPropertyChanged(nameof(LeftSelectedTab)+"."+nameof(LeftSelectedTab.Nodes));
+        RightSelectedTab.TabContent = null;
+    }
+
+    public void ShowRightPanel(TabViewPanelViewModel panel)
+    {
+        RightSelectedTab.TabContent = panel;
+    }
+
+    public ViewModelBase ViewModel()
+    {
+        return this;
     }
 }
