@@ -6,21 +6,21 @@
              xmlns:vm="clr-namespace:MicroMoney.ViewModels.RightTabs.Panels.Information"
              x:DataType="vm:ManageAnaliticDataSetViewModel"
              x:Class="MicroMoney.Views.RightTabs.Panels.Information.ManageAnaliticDataSetView">
-
-    <StackPanel Margin="20" Orientation="Vertical" HorizontalAlignment="Left">
+<Border  BorderThickness="1" BorderBrush="Gray">
+    <StackPanel Margin="5" Orientation="Vertical" HorizontalAlignment="Stretch">
          <StackPanel Margin="5" Orientation="Horizontal">
-            <Button Command="{Binding AddCommand}" Margin="20" Width="100" HorizontalContentAlignment="Center" Content="Добавить"/>
-            <Button Command="{Binding RemoveCommand}" Margin="20" Width="100" HorizontalContentAlignment="Center" Content="Удалить"/>
+            <Button Command="{Binding AddCommand}" Margin="5" Width="100" HorizontalContentAlignment="Center" Content="Добавить"/>
+            <Button Command="{Binding RemoveCommand}" Margin="5" Width="100" HorizontalContentAlignment="Center" Content="Удалить"/>
          </StackPanel>
-         <DataGrid Margin="20" ItemsSource="{Binding AnaliticSet}"
+         <DataGrid ItemsSource="{Binding AnaliticSet}"
                   CanUserReorderColumns="False"
                   CanUserResizeColumns="True"
                   CanUserSortColumns="True"
                   GridLinesVisibility="All"
-                  BorderThickness="1" BorderBrush="Gray">
+                  >
          <DataGrid.Columns>
-            <DataGridTextColumn Header="Наименование"  Binding="{Binding Description}"/>
-            <DataGridTextColumn Header="Значение" Binding="{Binding Data}" />
+            <DataGridTextColumn Header="Наименование" Width="4*"  Binding="{Binding Description}"/>
+            <DataGridTextColumn Header="Значение" Width="1*" Binding="{Binding Data}" />
          </DataGrid.Columns>
          </DataGrid> 
         <StackPanel Margin="5" Orientation="Horizontal">
@@ -28,4 +28,5 @@
             <Button Command="{Binding CancelCommand}" Margin="20" Width="100" HorizontalContentAlignment="Center" Content="Отмена" />
         </StackPanel>
     </StackPanel>
+    </Border>
 </UserControl>

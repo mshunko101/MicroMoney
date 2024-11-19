@@ -2,6 +2,7 @@ using MicroMoney.Services.Abstract;
 using MicroMoney.ViewModels;
 using MicroMoney.ViewModels.LeftTabs;
 using MicroMoney.ViewModels.RightTabs;
+using MicroMoney.ViewModels.RightTabs.Panels.Add;
 using MicroMoney.ViewModels.RightTabs.Panels.Information;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -28,7 +29,9 @@ namespace MicroMoney
 
             collection.AddScoped<ManageHoummieViewModel>();
             collection.AddScoped<ManageAnaliticViewModel>();
-            collection.AddScoped<ManageAnaliticDataSetViewModel>(); 
+            collection.AddScoped<ManageAnaliticDataSetViewModel>();     
+            collection.AddScoped<HiAddHoummieViewModel>();
+            collection.AddScoped<HiAddAnaliticViewModel>(); 
         }
     }
 }

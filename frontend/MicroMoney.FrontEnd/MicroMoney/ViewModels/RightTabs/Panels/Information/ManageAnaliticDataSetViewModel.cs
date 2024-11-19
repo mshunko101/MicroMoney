@@ -41,7 +41,7 @@ namespace MicroMoney.ViewModels.RightTabs.Panels.Information
 
         public void AddCommand()
         {
-            AnaliticSet.Add(AnaliticDataTreeNode.Create());
+            AnaliticSet.Add(new AnaliticDataTreeNode(string.Empty, Item));
         }
 
         public void RemoveCommand()

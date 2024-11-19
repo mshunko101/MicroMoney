@@ -6,11 +6,11 @@
              xmlns:vm="clr-namespace:MicroMoney.ViewModels.RightTabs.Panels.Information"
              x:DataType="vm:ManageAnaliticViewModel"
              x:Class="MicroMoney.Views.RightTabs.Panels.Information.ManageAnaliticView">
-    <StackPanel Margin="20" Orientation="Vertical" HorizontalAlignment="Left">
+    <StackPanel Margin="20" Orientation="Vertical" HorizontalAlignment="Stretch">
     <TextBlock Margin="0 5" >Имя справочника:</TextBlock>
-    <TextBox  Width="300" Text="{Binding AnaliticName}" Watermark="Введите имя справочника"/>
+    <TextBox Text="{Binding AnaliticName}" Watermark="Введите имя справочника"/>
     <TextBlock Margin="0 5" >Тип:</TextBlock>
-    <ComboBox Width="300" ItemsSource="{Binding AnaliticTypes}" SelectedIndex="{Binding TypeSelectedIndex}">
+    <ComboBox ItemsSource="{Binding AnaliticTypes}" SelectedIndex="{Binding TypeSelectedIndex}">
         <ComboBox.ItemTemplate>
             <DataTemplate>
                 <TextBlock Text="{Binding Name}"/>
@@ -18,10 +18,10 @@
         </ComboBox.ItemTemplate>
     </ComboBox>
     <TextBlock Margin="0 15 0 5">Описание:</TextBlock>
-    <TextBox Watermark="Описание справочника" Text="{Binding AnaliticDescription}" Width="300" Height="100" TextWrapping="Wrap"/>
+    <TextBox Watermark="Описание справочника" Text="{Binding AnaliticDescription}" Height="100" TextWrapping="Wrap"/>
         <StackPanel Orientation="Horizontal">
-            <Button Command="{Binding SaveCommand}" Margin="20" Width="100" HorizontalContentAlignment="Center" Content="Сохранить"/>
-            <Button Command="{Binding CancelCommand}" Margin="20" Width="100" HorizontalContentAlignment="Center" Content="Отмена" />
+            <Button Command="{Binding SaveCommand}" Margin="20" HorizontalContentAlignment="Center" Content="Сохранить"/>
+            <Button Command="{Binding CancelCommand}" Margin="20" HorizontalContentAlignment="Center" Content="Отмена" />
         </StackPanel>
     </StackPanel>
 </UserControl>
