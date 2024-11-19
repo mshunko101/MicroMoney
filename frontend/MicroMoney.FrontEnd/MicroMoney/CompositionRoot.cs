@@ -27,6 +27,8 @@ namespace MicroMoney
             collection.AddSingleton<ReportViewModel>();
 
             collection.AddScoped<ManageHoummieViewModel>();
+            collection.AddScoped<ManageAnaliticViewModel>();
+            collection.AddScoped<ManageAnaliticDataSetViewModel>(); 
         }
     }
 }

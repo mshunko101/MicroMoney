@@ -8,12 +8,25 @@ namespace MicroMoney.ViewModels.TreeViewNodes.AnalyticsSet
 {
     public class AnaliticTreeNode : TreeViewNode
     {
-        public string AnalyticName {get;set;}
+        public string AnaliticName {get;set;}
+        public string AnaliticDescription {get;set;}
         public int AnaliticId {get;set;}
+        public Type DataType {get;set;}
+ 
+        public static AnaliticTreeNode Create()
+        {
+            return new ();
+        }
+
+        protected AnaliticTreeNode()
+        {
+
+        }
 
         public AnaliticTreeNode(string title, TreeViewNode parent)
          : base(title, parent)
         {
+            AnaliticName = title;
         }
 
         public AnaliticTreeNode(string title, TreeViewNode parent, ObservableCollection<TreeViewNode> subNodes)

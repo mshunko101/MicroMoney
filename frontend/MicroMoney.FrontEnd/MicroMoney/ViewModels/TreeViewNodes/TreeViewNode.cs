@@ -25,18 +25,23 @@ namespace MicroMoney.ViewModels.TreeViewNodes
                 OnPropertyChanged(nameof(Title));
             }
         }
+
+        protected TreeViewNode()
+        {
+            SubNodes = new ObservableCollection<TreeViewNode>();
+        }
   
         public TreeViewNode(string title, TreeViewNode parent)
         {
             Title = title;
-            Id = parent.Id + 1;
+            SubNodes = new ObservableCollection<TreeViewNode>();
         }
 
         public TreeViewNode(string title, TreeViewNode parent, ObservableCollection<TreeViewNode> subNodes)
         {
             Title = title;
             SubNodes = subNodes;
-            Id = parent.Id + 1;
+            SubNodes = new ObservableCollection<TreeViewNode>();
         }
     }
 }

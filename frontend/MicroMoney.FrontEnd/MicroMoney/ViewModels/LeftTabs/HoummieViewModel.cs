@@ -22,10 +22,6 @@ namespace MicroMoney.ViewModels.LeftTabs
             Nodes = new ObservableCollection<TreeViewNode>();
         }
 
-        protected void OnSelectedNodesChanged()
-        {
-            
-        }
 
         public override void AddNodeCommand()
         {
@@ -45,22 +41,5 @@ namespace MicroMoney.ViewModels.LeftTabs
             
         }
 
-        public void OnSelectedNodeChanged()
-        {
-
-        }
-
-        protected override void OnPropertyChanged(PropertyChangedEventArgs e)
-        {
-            if(e.PropertyName == nameof(SelectedNodes))
-            {
-                OnSelectedNodesChanged();
-            }
-            else if(e.PropertyName == nameof(SelectedNode))
-            {
-                OnSelectedNodeChanged();
-            }
-            base.OnPropertyChanged(e);
-        }
     }
 }

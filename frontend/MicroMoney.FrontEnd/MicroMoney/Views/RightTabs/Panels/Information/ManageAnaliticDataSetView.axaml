@@ -1,0 +1,31 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:vm="clr-namespace:MicroMoney.ViewModels.RightTabs.Panels.Information"
+             x:DataType="vm:ManageAnaliticDataSetViewModel"
+             x:Class="MicroMoney.Views.RightTabs.Panels.Information.ManageAnaliticDataSetView">
+
+    <StackPanel Margin="20" Orientation="Vertical" HorizontalAlignment="Left">
+         <StackPanel Margin="5" Orientation="Horizontal">
+            <Button Command="{Binding AddCommand}" Margin="20" Width="100" HorizontalContentAlignment="Center" Content="Добавить"/>
+            <Button Command="{Binding RemoveCommand}" Margin="20" Width="100" HorizontalContentAlignment="Center" Content="Удалить"/>
+         </StackPanel>
+         <DataGrid Margin="20" ItemsSource="{Binding AnaliticSet}"
+                  CanUserReorderColumns="False"
+                  CanUserResizeColumns="True"
+                  CanUserSortColumns="True"
+                  GridLinesVisibility="All"
+                  BorderThickness="1" BorderBrush="Gray">
+         <DataGrid.Columns>
+            <DataGridTextColumn Header="Наименование"  Binding="{Binding Description}"/>
+            <DataGridTextColumn Header="Значение" Binding="{Binding Data}" />
+         </DataGrid.Columns>
+         </DataGrid> 
+        <StackPanel Margin="5" Orientation="Horizontal">
+            <Button Command="{Binding SaveCommand}" Margin="20" Width="100" HorizontalContentAlignment="Center" Content="Сохранить"/>
+            <Button Command="{Binding CancelCommand}" Margin="20" Width="100" HorizontalContentAlignment="Center" Content="Отмена" />
+        </StackPanel>
+    </StackPanel>
+</UserControl>
