@@ -1,8 +1,5 @@
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
 using MicroMoney.Services.Abstract;
 using MicroMoney.ViewModels.RightTabs.Panels.Information;
 using MicroMoney.ViewModels.TreeViewNodes;
@@ -11,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace MicroMoney.ViewModels.LeftTabs
 {
-    public class AnaliticsSetsViewModel: LeftTabsViewModel
+    public class AnaliticsSetsViewModel : LeftTabsViewModel
     {
         private IServiceProvider serviceProvider;
         public AnaliticsSetsViewModel(IServiceProvider sp)
@@ -21,10 +18,9 @@ namespace MicroMoney.ViewModels.LeftTabs
             Nodes = new ObservableCollection<TreeViewNode>();
         }
 
-
         public override void AddNodeCommand()
         {
-            if(SelectedNode is null)
+            if (SelectedNode is null)
             {
                 var node = AnaliticTreeNode.Create();
                 Nodes.Add(node);
@@ -36,8 +32,8 @@ namespace MicroMoney.ViewModels.LeftTabs
                 mainModel.ShowRightPanel(tabContent);
                 SelectedNode = node;
             }
-            else 
-            { 
+            else
+            {
                 var mainModel = serviceProvider.GetService<IUiService>() ?? throw new ArgumentNullException();
                 mainModel.SwitchToRightTab("Информация");
 
@@ -48,9 +44,23 @@ namespace MicroMoney.ViewModels.LeftTabs
             }
         }
 
+        protected override void OnSelectedNodeChanged()
+        {
+            if(SelectedNode is AnaliticTreeNode an && an.DataType != null)
+            {
+                var mainModel = serviceProvider.GetService<IUiService>() ?? throw new ArgumentNullException();
+                mainModel.SwitchToRightTab("Информация");
+
+                var tabContent = serviceProvider.GetService<ManageAnaliticDataSetViewModel>() ?? throw new ArgumentNullException();
+                tabContent.Item = SelectedNode as AnaliticTreeNode;
+                tabContent.Init();
+                mainModel.ShowRightPanel(tabContent);
+            } 
+        }
+
         public override void DelNodeCommand()
         {
-            
+
         }
     }
 }

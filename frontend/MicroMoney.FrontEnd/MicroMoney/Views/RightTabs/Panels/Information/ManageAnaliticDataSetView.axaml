@@ -4,28 +4,42 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              xmlns:vm="clr-namespace:MicroMoney.ViewModels.RightTabs.Panels.Information"
+             xmlns:converters="clr-namespace:MicroMoney.Views.Converters"
              x:DataType="vm:ManageAnaliticDataSetViewModel"
              x:Class="MicroMoney.Views.RightTabs.Panels.Information.ManageAnaliticDataSetView">
+ 
+<UserControl.Resources>
+    <converters:TabIconConverter x:Key="tabIconConverter"/>
+</UserControl.Resources>
 <Border  BorderThickness="1" BorderBrush="Gray">
-    <StackPanel Margin="5" Orientation="Vertical" HorizontalAlignment="Stretch">
-         <StackPanel Margin="5" Orientation="Horizontal">
-            <Button Command="{Binding AddCommand}" Margin="5" Width="100" HorizontalContentAlignment="Center" Content="Добавить"/>
-            <Button Command="{Binding RemoveCommand}" Margin="5" Width="100" HorizontalContentAlignment="Center" Content="Удалить"/>
+    <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch">
+         <StackPanel Orientation="Horizontal">
+            <Button Command="{Binding AddCommand}" HorizontalContentAlignment="Center">
+                <Button.Content> 
+                    <PathIcon Data="{Binding Converter={StaticResource tabIconConverter}, ConverterParameter=SquareAdd}" /> 
+                </Button.Content>
+            </Button>
+            <Button Command="{Binding RemoveCommand}" HorizontalContentAlignment="Center">
+                <Button.Content> 
+                    <PathIcon Data="{Binding Converter={StaticResource tabIconConverter}, ConverterParameter=Delete}" /> 
+                </Button.Content>
+            </Button>
          </StackPanel>
          <DataGrid ItemsSource="{Binding AnaliticSet}"
                   CanUserReorderColumns="False"
                   CanUserResizeColumns="True"
                   CanUserSortColumns="True"
                   GridLinesVisibility="All"
+                  VerticalAlignment="Stretch"
                   >
          <DataGrid.Columns>
             <DataGridTextColumn Header="Наименование" Width="4*"  Binding="{Binding Description}"/>
             <DataGridTextColumn Header="Значение" Width="1*" Binding="{Binding Data}" />
          </DataGrid.Columns>
          </DataGrid> 
-        <StackPanel Margin="5" Orientation="Horizontal">
-            <Button Command="{Binding SaveCommand}" Margin="20" Width="100" HorizontalContentAlignment="Center" Content="Сохранить"/>
-            <Button Command="{Binding CancelCommand}" Margin="20" Width="100" HorizontalContentAlignment="Center" Content="Отмена" />
+        <StackPanel Margin="5" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Command="{Binding SaveCommand}" Width="100" HorizontalContentAlignment="Center" Content="Сохранить"/>
+            <Button Command="{Binding CancelCommand}" Width="100" HorizontalContentAlignment="Center" Content="Отмена" />
         </StackPanel>
     </StackPanel>
     </Border>

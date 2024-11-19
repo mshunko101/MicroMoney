@@ -31,7 +31,9 @@ namespace MicroMoney
             collection.AddScoped<ManageAnaliticViewModel>();
             collection.AddScoped<ManageAnaliticDataSetViewModel>();     
             collection.AddScoped<HiAddHoummieViewModel>();
-            collection.AddScoped<HiAddAnaliticViewModel>(); 
+            collection.AddScoped<HiAddAnaliticViewModel>();
+            collection.AddScoped<HiAddAnaliticDataViewModel>();
+            
         }
     }
 }

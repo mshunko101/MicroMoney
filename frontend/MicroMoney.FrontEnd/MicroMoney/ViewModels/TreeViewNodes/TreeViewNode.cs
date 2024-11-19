@@ -35,6 +35,7 @@ namespace MicroMoney.ViewModels.TreeViewNodes
         {
             Title = title;
             SubNodes = new ObservableCollection<TreeViewNode>();
+            Parent = parent;
         }
 
         public TreeViewNode(string title, TreeViewNode parent, ObservableCollection<TreeViewNode> subNodes)

@@ -10,10 +10,10 @@
     <TextBlock Margin="0 5" >Имя справочника:</TextBlock>
     <TextBox Text="{Binding AnaliticName}" Watermark="Введите имя справочника"/>
     <TextBlock Margin="0 5" >Тип:</TextBlock>
-    <ComboBox ItemsSource="{Binding AnaliticTypes}" SelectedIndex="{Binding TypeSelectedIndex}">
+    <ComboBox ItemsSource="{Binding AnaliticTypes}" SelectedIndex="{Binding TypeSelectedIndex}" HorizontalAlignment="Stretch">
         <ComboBox.ItemTemplate>
             <DataTemplate>
-                <TextBlock Text="{Binding Name}"/>
+                <TextBlock Text="{Binding Name}" HorizontalAlignment="Stretch"/>
             </DataTemplate>
         </ComboBox.ItemTemplate>
     </ComboBox>

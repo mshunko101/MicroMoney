@@ -30,13 +30,12 @@ namespace MicroMoney.ViewModels.LeftTabs
             
         }
 
-
-        public virtual void OnSelectedNodeChanged()
+        protected virtual void OnSelectedNodesChanged()
         {
-
+            
         }
 
-        protected virtual void OnSelectedNodesChanged()
+        protected virtual void OnSelectedNodeChanged()
         {
             
         }
@@ -47,7 +46,7 @@ namespace MicroMoney.ViewModels.LeftTabs
             {
                 OnSelectedNodesChanged();
             }
-            else if(e.PropertyName == nameof(SelectedNode))
+            if(e.PropertyName == nameof(SelectedNode))
             {
                 OnSelectedNodeChanged();
             }

@@ -46,6 +46,7 @@ namespace MicroMoney.ViewModels.RightTabs.Panels.Information
                 Node.AnaliticDescription = AnaliticDescription;
                 Node.Title = AnaliticName;
                 Node.DataType = AnaliticTypes.First(x => x.Id == TypeSelectedIndex).Type;
+                
                 AnaliticName = string.Empty;
                 AnaliticDescription = string.Empty;
             }

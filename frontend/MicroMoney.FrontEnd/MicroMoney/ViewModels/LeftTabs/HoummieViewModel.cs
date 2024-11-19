@@ -22,7 +22,6 @@ namespace MicroMoney.ViewModels.LeftTabs
             Nodes = new ObservableCollection<TreeViewNode>();
         }
 
-
         public override void AddNodeCommand()
         {
             var node = new HoummieTreeViewNode(SelectedNode);

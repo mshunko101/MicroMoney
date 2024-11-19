@@ -3,6 +3,7 @@ using MicroMoney.Services.Abstract;
 using MicroMoney.ViewModels.LeftTabs;
 using MicroMoney.ViewModels.RightTabs;
 using MicroMoney.ViewModels.RightTabs.Panels.Add;
+using MicroMoney.ViewModels.TreeViewNodes.AnalyticsSet;
 using MicroMoney.Views.Converters;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -121,6 +122,9 @@ public partial class MainViewModel : ViewModelBase, IUiService
     {
         // OnPropertyChanged(nameof(LeftSelectedTab)+"."+nameof(LeftSelectedTab.Nodes));
         RightSelectedTab.TabContent = null;
+        var sn = LeftSelectedTab.SelectedNode;
+        LeftSelectedTab.SelectedNode = null;
+        LeftSelectedTab.SelectedNode = sn;
     }
 
     public void ShowRightPanel(TabViewPanelViewModel panel)
@@ -142,7 +146,10 @@ public partial class MainViewModel : ViewModelBase, IUiService
         }
         else if(tabName == "Справочники")
         {
-            panel = serviceProvider.GetService<HiAddAnaliticViewModel>();
+            if(LeftSelectedTab.SelectedNode is null)
+            {
+                panel = serviceProvider.GetService<HiAddAnaliticViewModel>();
+            }
         }
         if(panel != null)
         {

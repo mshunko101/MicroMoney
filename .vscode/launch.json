@@ -8,7 +8,7 @@
             "name": "C#: MicroMoney Debug",
             "type": "dotnet",
             "request": "launch",
-            "projectPath": "${workspaceFolder}/MicroMoney.Desktop/MicroMoney.Desktop.csproj"
+            "projectPath": "${workspaceFolder}/frontend/MicroMoney.FrontEnd/MicroMoney.Desktop/MicroMoney.Desktop.csproj"
         }
        
 
