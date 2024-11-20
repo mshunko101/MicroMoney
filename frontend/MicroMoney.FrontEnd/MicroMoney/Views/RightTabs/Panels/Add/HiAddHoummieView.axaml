@@ -7,6 +7,9 @@
              x:DataType="vm:HiAddHoummieViewModel"
              x:Class="MicroMoney.Views.RightTabs.Panels.Add.HiAddHoummieView">
    <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-    <Button Command="{Binding AddCommand}" Content="Добавить человека" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    <StackPanel Orientation="Vertical">
+      <Button Command="{Binding AddKingdomCommand}" Content="Добавить Спадарства" Margin="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+      <Button Command="{Binding AddCommand}" Content="Добавить человека" Margin="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    </StackPanel>
   </Border>
 </UserControl>
