@@ -99,7 +99,7 @@
         <RowDefinition/>
       </Grid.RowDefinitions>
        <Border Grid.Row="0" Margin="15" BorderThickness="1" BorderBrush="WhiteSmoke">
-         <TextBlock  Text="{Binding TreePath}"/>
+         <TextBlock  Text="{Binding LeftSelectedTab.SelectedTreePath}"/>
       </Border>
 
 

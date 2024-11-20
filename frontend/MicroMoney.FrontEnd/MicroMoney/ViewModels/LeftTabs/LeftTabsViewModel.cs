@@ -37,7 +37,7 @@ namespace MicroMoney.ViewModels.LeftTabs
 
         protected virtual void OnSelectedNodeChanged()
         {
-            
+            SelectedTreePath = SelectedNode?.Title;
         }
         
         protected override void OnPropertyChanged(PropertyChangedEventArgs e)
